@@ -3,6 +3,8 @@
 format = """
 [ ](background)\
 $os\
+$battery\
+[|](bg:background fg:foreground)\
 $username\
 $directory\
 [ ](background)\
@@ -30,11 +32,10 @@ $character\
 
 palette = 'Japandi'
 
-
 [os]
 disabled = false
 style = "bg:background fg:foreground"
-format = '[$symbol|]($style)'
+format = '[$symbol]($style)'
 
 [username]
 show_always = false
@@ -56,16 +57,13 @@ format = '[[ $symbol $branch ](fg:foreground bg:background)]($style)'
 [git_status]
 style = "bg:background"
 format = '[[($all_status$ahead_behind )](fg:foreground bg:background)]($style)'
-[nodejs]
-symbol = ""
-style = "bg:background"
-format = '[[ $symbol( $version) ](fg:foreground bg:background)]($style)'
 
 [custom.no_lang]
 command = "echo ○"
 when = """
 [ -z "$(starship module git_branch 2>/dev/null)" ] &&
 [ -z "$(starship module git_status 2>/dev/null)" ] &&
+[ -z "$(starship module bun 2>/dev/null)" ] &&
 [ -z "$(starship module python 2>/dev/null)" ] &&
 [ -z "$(starship module nodejs 2>/dev/null)" ] &&
 [ -z "$(starship module rust 2>/dev/null)" ] &&
@@ -77,6 +75,77 @@ when = """
 """
 format = "[$output](fg:foreground bg:background)"
 
+[battery]
+disabled = true
+full_symbol = "󰁹"
+charging_symbol = "󰂄"
+discharging_symbol = "󱊣"
+unknown_symbol = "󱧥"
+empty_symbol = "󰂎"
+format = "[ $symbol](fg:foreground bg:background)"
+
+[[battery.display]]
+threshold = 100
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:background fg:foreground"
+format = '[  $time ]($style)'
+
+[character]
+disabled = false
+format = '[$symbol](fg:foreground bg:background)'
+success_symbol = '[❯](bg:background fg:success)'
+error_symbol = '[❯](bg:background fg:error)'
+vimcmd_symbol = '[❮](bg:background)'
+vimcmd_replace_one_symbol = '[❮](bg:background)'
+vimcmd_replace_symbol = '[❮](bg:background)'
+vimcmd_visual_symbol = '[❮](bg:background)'
+
+[cmd_duration]
+show_milliseconds = false
+format = "[ 󱎫 $duration ](fg:foreground bg:background)"
+disabled = false
+show_notifications = false
+min_time_to_notify = 10000
+
+#symbols
+
+[os.symbols]
+Windows = "  "
+Ubuntu = " 󰕈 "
+SUSE = "  "
+Raspbian = " 󰐿 "
+Mint = " 󰣭 "
+Macos = " 󰀵 "
+Manjaro = "  "
+Linux = " 󰌽 "
+Gentoo = " 󰣨 "
+Fedora = " 󰣛 "
+Alpine = "  "
+Amazon = "  "
+Android = "  "
+Arch = " 󰣇 "
+Artix = " 󰣇 "
+CentOS = "  "
+Debian = " 󰣚 "
+Redhat = " 󱄛 "
+RedHatEnterprise = " 󱄛 "
+
+[directory.substitutions]
+"Documents" = " 󰈙 "
+"Downloads" = "  "
+"Music" = " 󰝚 "
+"Pictures" = "  "
+"Developer" = " 󰲋 "
+"com~apple~CloudDocs" = " 󰀸 "
+
+
+[nodejs]
+symbol = ""
+style = "bg:background"
+format = '[[ $symbol( $version) ](fg:foreground bg:background)]($style)'
 
 [bun]
 symbol = ""
@@ -134,60 +203,6 @@ style = "fg:foreground bg:background"
 format = '[$symbol$environment ]($style)'
 ignore_base = false
 
-[time]
-disabled = false
-time_format = "%R"
-style = "bg:background fg:foreground"
-format = '[  $time ]($style)'
-
-[character]
-disabled = false
-format = '[$symbol](fg:foreground bg:background)'
-success_symbol = '[❯](bg:background fg:success)'
-error_symbol = '[❯](bg:background fg:error)'
-vimcmd_symbol = '[❮](bg:background)'
-vimcmd_replace_one_symbol = '[❮](bg:background)'
-vimcmd_replace_symbol = '[❮](bg:background)'
-vimcmd_visual_symbol = '[❮](bg:background)'
-
-[cmd_duration]
-show_milliseconds = true
-format = "[ 󱎫 $duration ](fg:foreground bg:background)"
-disabled = false
-show_notifications = true
-min_time_to_notify = 1000
-
-#symbols
-
-[os.symbols]
-Windows = "  "
-Ubuntu = " 󰕈 "
-SUSE = "  "
-Raspbian = " 󰐿 "
-Mint = " 󰣭 "
-Macos = " 󰀵 "
-Manjaro = "  "
-Linux = " 󰌽 "
-Gentoo = " 󰣨 "
-Fedora = " 󰣛 "
-Alpine = "  "
-Amazon = "  "
-Android = "  "
-Arch = " 󰣇 "
-Artix = " 󰣇 "
-CentOS = "  "
-Debian = " 󰣚 "
-Redhat = " 󱄛 "
-RedHatEnterprise = " 󱄛 "
-
-[directory.substitutions]
-"Documents" = " 󰈙 "
-"Downloads" = "  "
-"Music" = " 󰝚 "
-"Pictures" = "  "
-"Developer" = " 󰲋 "
-"com~apple~CloudDocs" = " 󰀸 "
-
 #palettes
 
 [palettes.Japandi]
@@ -195,3 +210,9 @@ background = "#6F4E37"
 foreground = "#B7A39E"
 success = "#9DAE8F"
 error = "#DB4D6D"
+
+[palettes.Japandi-rev]
+background = "#B7A39E"
+foreground = "#6F4E37"
+success = "#8A9A5B"
+error = "#E2725B"
