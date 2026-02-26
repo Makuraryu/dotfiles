@@ -1,0 +1,178 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$directory\
+$git_status\
+$cmd_duration\
+$character\
+"""
+
+palette = 'Japandi'
+
+[os]
+disabled = false
+style = "bg:background fg:foreground"
+format = '[$symbol]($style)'
+
+[username]
+show_always = false
+style_user = "bg:background fg:foreground"
+style_root = "bg:background fg:foreground"
+format = '[ $user ]($style)'
+
+[directory]
+style = "bg:background fg:foreground"
+format = "[ $path ]($style)"
+truncation_length = 2
+truncation_symbol = " /"
+
+[git_branch]
+symbol = ""
+style = "bg:background"
+format = '[[ $symbol $branch ](fg:foreground bg:background)]($style)'
+
+[git_status]
+style = "bg:background"
+format = '[[($all_status$ahead_behind )](fg:foreground bg:background)]($style)'
+
+[battery]
+disabled = true
+full_symbol = "󰁹"
+charging_symbol = "󰂄"
+discharging_symbol = "󱊣"
+unknown_symbol = "󱧥"
+empty_symbol = "󰂎"
+format = "[ $symbol](fg:foreground bg:background)"
+
+[[battery.display]]
+threshold = 100
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:background fg:foreground"
+format = '[  $time ]($style)'
+
+[character]
+disabled = false
+format = '[$symbol](fg:foreground bg:background)'
+success_symbol = '[\$ ](bg:background fg:success)'
+error_symbol = '[\$ ](bg:background fg:error)'
+vimcmd_symbol = '[❮](bg:background)'
+vimcmd_replace_one_symbol = '[❮](bg:background)'
+vimcmd_replace_symbol = '[❮](bg:background)'
+vimcmd_visual_symbol = '[❮](bg:background)'
+
+[cmd_duration]
+show_milliseconds = false
+format = "[ 󱎫 $duration ](fg:foreground bg:background)"
+disabled = false
+show_notifications = false
+min_time_to_notify = 10000
+
+#symbols
+
+[os.symbols]
+Windows = "  "
+Ubuntu = " 󰕈 "
+SUSE = "  "
+Raspbian = " 󰐿 "
+Mint = " 󰣭 "
+Macos = " 󰀵 "
+Manjaro = "  "
+Linux = " 󰌽 "
+Gentoo = " 󰣨 "
+Fedora = " 󰣛 "
+Alpine = "  "
+Amazon = "  "
+Android = "  "
+Arch = " 󰣇 "
+Artix = " 󰣇 "
+CentOS = "  "
+Debian = " 󰣚 "
+Redhat = " 󱄛 "
+RedHatEnterprise = " 󱄛 "
+
+[directory.substitutions]
+"Documents" = " 󰈙 "
+"Downloads" = "  "
+"Music" = " 󰝚 "
+"Pictures" = "  "
+"Developer" = " 󰲋 "
+"com~apple~CloudDocs" = " 󰀸 "
+
+
+[nodejs]
+symbol = ""
+style = "bg:background"
+format = '[[ $symbol( $version) ](fg:foreground bg:background)]($style)'
+
+[bun]
+symbol = ""
+style = "bg:background"
+format = '[[ $symbol( $version) ](fg:foreground bg:background)]($style)'
+
+[c]
+symbol = " "
+style = "bg:background"
+format = '[[ $symbol( $version) ](fg:foreground bg:background)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:background"
+format = '[[ $symbol( $version) ](fg:foreground bg:background)]($style)'
+
+[golang]
+symbol = ""
+style = "bg:background"
+format = '[[ $symbol( $version) ](fg:foreground bg:background)]($style)'
+
+[php]
+symbol = ""
+style = "bg:background"
+format = '[[ $symbol( $version) ](fg:foreground bg:background)]($style)'
+
+[java]
+symbol = " "
+style = "bg:background"
+format = '[[ $symbol( $version) ](fg:foreground bg:background)]($style)'
+
+[kotlin]
+symbol = ""
+style = "bg:background"
+format = '[[ $symbol( $version) ](fg:foreground bg:background)]($style)'
+
+[haskell]
+symbol = ""
+style = "bg:background"
+format = '[[ $symbol( $version) ](fg:foreground bg:background)]($style)'
+
+[python]
+symbol = ""
+style = "bg:background"
+format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:foreground bg:background)]($style)'
+
+[docker_context]
+symbol = ""
+style = "bg:background"
+format = '[[ $symbol( $context) ](fg:foreground bg:background)]($style)'
+
+[conda]
+symbol = " "
+style = "fg:foreground bg:background"
+format = '[$symbol$environment ]($style)'
+ignore_base = false
+
+#palettes
+
+[palettes.Japandi]
+background = ""
+foreground = "#B7A39E"
+success = "#9DAE8F"
+error = "#DB4D6D"
+
+[palettes.Japandi-rev]
+background = "#B7A39E"
+foreground = "#6F4E37"
+success = "#8A9A5B"
+error = "#E2725B"
